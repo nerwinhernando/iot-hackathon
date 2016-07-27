@@ -56,7 +56,7 @@ def sendPost(server,status,postEnabled):
 		request = urllib2.Request(server, status)
 		request.add_header('Content-Type','application/json')
 		request.get_method = lambda:'PUT'
-		#url = opener.open (request)
+		url = opener.open (request)
 		print("PUT",server,status,"sent")
 
 def function():
@@ -74,7 +74,7 @@ def function():
 
 	try:
 		while True:
-			pir = GPIO.input(11)
+			pir = GPIO.input(settings.pir_pin)
 
 			if pir == EMPTY:
 				print ("Meeting Room is empty")
@@ -83,7 +83,7 @@ def function():
 				if FLAG is not EMPTY:
 					sendPost(settings.server, settings.empty, settings.postEnabled)
 					FLAG = EMPTY
-				time.sleep(5)
+				time.sleep(1)
 
 			elif pir == OCCUPIED:
 				print ("Meeting Room is occupied")
@@ -92,6 +92,7 @@ def function():
 				if FLAG is not OCCUPIED:
 					sendPost(settings.server, settings.occupied,settings.postEnabled)
 					FLAG = OCCUPIED
-				time.sleep(5)
-	except:
-		print("\nPIR Module stopped!")
+				time.sleep(1)
+
+	except Exception as error:
+		print("\nPIR Module stopped!", error)

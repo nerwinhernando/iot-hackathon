@@ -1,6 +1,7 @@
 import RPi.GPIO as GPIO
 import time
 import urllib
+import urllib2
 
 url = "http://10.136.130.203:8000/v1/collectionProfiles/"
 #url = "http://api.learn2crack.com/rpi/rpi_get.php"
