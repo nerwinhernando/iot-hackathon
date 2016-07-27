@@ -9,24 +9,15 @@ GPIO.setup(12, GPIO.IN, pull_up_down = GPIO.PUD_UP) #button
 GPIO.setup(13, GPIO.OUT) #led
 GPIO.setup(15, GPIO.OUT) #led
 
-occupied = {
-    "id": 3,
-    "status": 1
-}
-
-empty = {
-    "id": 3,
-    "status": 0
-}
-
-url = 'http://10.136.142.173:3000/api/v1/meeting_rooms'
+occupied ='{"id": 3,"status": 1}'
+empty ='{"id": 3,"status": 0}'
 
 def sendPost(status):
-	data = urllib.urlencode(status)
-	request = urllib2.Request(url, data)
-	response = urllib2.urlopen(request).read()
-	print (response)
-
+	opener = urllib2.build_opener(urllib2.HTTPHandler)
+	request = urllib2.Request('http://10.136.142.173:3000/api/v1/meeting_rooms', status)
+	request.add_header('Content-Type','application/json')
+	request.get_method = lambda:'PUT'
+	url = opener.open (request)
 while True:
 	i = GPIO.input(11)
 	if i == 0:
