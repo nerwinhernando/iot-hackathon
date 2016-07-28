@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Room:</strong>
+  <%= @meeting_room.room %>
+</p>
+
+<p>
+  <strong>Area:</strong>
+  <%= @meeting_room.area %>
+</p>
+
+<p>
+  <strong>Equipment:</strong>
+  <%= @meeting_room.equipment %>
+</p>
+
+<p>
+  <strong>Capacity:</strong>
+  <%= @meeting_room.capacity %>
+</p>
+
+<%= link_to 'Edit', edit_meeting_room_path(@meeting_room) %> |
+<%= link_to 'Back', meeting_rooms_path %>

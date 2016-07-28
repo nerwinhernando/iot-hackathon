@@ -1,0 +1,2 @@
+json.extract! reservation, :id, :reservation_date, :time_start, :time_end, :purpose, :no_of_participants, :employee_id, :meeting_room_id, :created_at, :updated_at
+json.url reservation_url(reservation, format: :json)

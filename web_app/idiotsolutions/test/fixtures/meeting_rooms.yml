@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  reservation_date: 2016-07-25
+  room: MyString
+  area: MyString
+  time_start: 2016-07-25 15:43:03
+  time_end: 2016-07-25 15:43:03
+  purpose: MyString
+  equipment: MyString
+  no_of_participants: 1
+  no_of_participants: 1
+  capacity: 1
+  employee_id: 
+
+two:
+  reservation_date: 2016-07-25
+  room: MyString
+  area: MyString
+  time_start: 2016-07-25 15:43:03
+  time_end: 2016-07-25 15:43:03
+  purpose: MyString
+  equipment: MyString
+  no_of_participants: 1
+  no_of_participants: 1
+  capacity: 1
+  employee_id: 

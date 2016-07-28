@@ -1,2 +1,1 @@
-# iot-hackathon
-Internet of Things Hackathon
+# Hello World
