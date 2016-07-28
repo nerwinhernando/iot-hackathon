@@ -2,12 +2,13 @@
 
 <h1>Listing Reservations</h1>
 
-<table>
+<table class="table table-bordered">
   <thead>
     <tr>
       <th>Reservation date</th>
       <th>Time start</th>
       <th>Time end</th>
+      <th>Status</th>      
       <th>Purpose</th>
       <th>No of participants</th>
       <th>Employee</th>
@@ -20,12 +21,13 @@
     <% @reservations.each do |reservation| %>
       <tr>
         <td><%= reservation.reservation_date %></td>
-        <td><%= reservation.time_start %></td>
-        <td><%= reservation.time_end %></td>
+        <td><%= reservation.time_start.strftime("%I:%M%p")  %></td>
+        <td><%= reservation.time_end.strftime("%I:%M%p") %></td>
+        <td><%= reservation.status %></td>
         <td><%= reservation.purpose %></td>
         <td><%= reservation.no_of_participants %></td>
-        <td><%= reservation.employee %></td>
-        <td><%= reservation.meeting_room %></td>
+        <td><%= reservation.employee.first_name + " " + reservation.employee.last_name %></td>
+        <td><%= reservation.meeting_room.room %></td>
         <td><%= link_to 'Show', reservation %></td>
         <td><%= link_to 'Edit', edit_reservation_path(reservation) %></td>
         <td><%= link_to 'Destroy', reservation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -33,7 +35,6 @@
     <% end %>
   </tbody>
 </table>
-
 <br>
 
 <%= link_to 'New Reservation', new_reservation_path %>

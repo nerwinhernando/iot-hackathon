@@ -17,6 +17,10 @@ Reservation.delete_all
 #| updated_at         | datetime     | NO   |     | NULL    |                |
 #+--------------------+--------------+------+-----+---------+----------------+
 
+# Reservations for Meeting Room 1
+sd = Date.parse('2016-08-01')
+ed = Date.parse('2010-08-31')
+
 Reservation.create!(reservation_date: '2016-08-06', meeting_room_id: 1,
 	time_start: '08:00:00', time_end: '08:59:59', purpose: 'Retrospective',
 	no_of_participants: 5, employee_id: 1)

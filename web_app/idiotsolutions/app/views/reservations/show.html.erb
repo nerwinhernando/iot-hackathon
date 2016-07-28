@@ -14,7 +14,10 @@
   <strong>Time end:</strong>
   <%= @reservation.time_end %>
 </p>
-
+<p>
+  <strong>Status:</strong>
+  <%= @reservation.status %>
+</p>
 <p>
   <strong>Purpose:</strong>
   <%= @reservation.purpose %>
@@ -27,7 +30,7 @@
 
 <p>
   <strong>Employee:</strong>
-  <%= @reservation.employee %>
+  <%= @reservation.employee.first_name + " " + @reservation.employee.last_name %>
 </p>
 
 <p>
