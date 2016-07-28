@@ -4,11 +4,13 @@ class ApiReservationsController < ApplicationController
     render json: @reserve
   end
   def update
-    @reserve.update(status: 2)
+    @reserve.update(status: params[:status])
     render json: @reserve
   end
-	def find_reservation
-    @reserve = Reservation.where(meeting_room_id: params[:id])
+  def find_reservation
+    @date = Date.today
+    @time = Time.now.to_formatted_s(:time)
+    @reserve = Reservation.where(meeting_room_id: params[:id], reservation_date: @date).where("time_start < ?", @time).where("time_end > ?", @time)
     render nothing: true, status: :not_found unless @reserve.present?
 	end
 end

@@ -14,3 +14,14 @@
 2016/07/27 17:56:44 [notice] 26500#26512: signal process started
 2016/07/27 17:56:52 [error] 17604#19444: *146 upstream timed out (10060: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond) while connecting to upstream, client: 10.136.130.24, server: localhost, request: "GET / HTTP/1.1", upstream: "http://[::1]:3002/", host: "10.136.129.71:3000"
 2016/07/28 12:57:02 [notice] 7452#4224: signal process started
+2016/07/28 16:12:28 [notice] 1104#6824: signal process started
+2016/07/28 16:12:28 [error] 1104#6824: OpenEvent("Global\ngx_reload_2056") failed (2: The system cannot find the file specified)
+2016/07/28 16:12:42 [emerg] 10396#11288: CreateDirectory() "D:\workspaces\Hackathon\iot-hackathon\web_app\nginx-1.10.1/temp/client_body_temp" failed (3: The system cannot find the path specified)
+2016/07/28 16:12:47 [notice] 10492#11588: signal process started
+2016/07/28 16:12:47 [error] 10492#11588: OpenEvent("Global\ngx_reload_2056") failed (2: The system cannot find the file specified)
+2016/07/28 16:12:58 [emerg] 12056#11896: CreateDirectory() "D:\workspaces\Hackathon\iot-hackathon\web_app\nginx-1.10.1/temp/client_body_temp" failed (3: The system cannot find the path specified)
+2016/07/28 16:13:17 [emerg] 8284#11680: CreateDirectory() "D:\workspaces\Hackathon\iot-hackathon\web_app\nginx-1.10.1/temp/client_body_temp" failed (3: The system cannot find the path specified)
+2016/07/28 16:13:52 [emerg] 12216#11680: CreateDirectory() "D:\workspaces\Hackathon\iot-hackathon\web_app\nginx-1.10.1/temp/client_body_temp" failed (3: The system cannot find the path specified)
+2016/07/28 16:17:19 [notice] 12136#12976: signal process started
+2016/07/28 16:17:19 [error] 12136#12976: OpenEvent("Global\ngx_reload_12780") failed (2: The system cannot find the file specified)
+2016/07/28 16:17:31 [notice] 12804#12344: signal process started

@@ -116,5 +116,8 @@ DEPENDENCIES
   rails (~> 5.0.0)
   tzinfo-data
 
+RUBY VERSION
+   ruby 2.2.5p319
+
 BUNDLED WITH
    1.12.5

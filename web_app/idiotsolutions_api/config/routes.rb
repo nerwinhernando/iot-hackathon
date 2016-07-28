@@ -12,10 +12,8 @@ Rails.application.routes.draw do
       end
 
       scope '/reservations' do
-        scope '/:id' do
-          get '/' => 'api_reservations#show'
-          put '/' => 'api_reservations#update'
-        end
+        get '/' => 'api_reservations#show'
+        put '/' => 'api_reservations#update'
       end
 
     end
