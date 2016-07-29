@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Meeting Room Status</h1>
+Date:<font color="blue"><%= @date = Date.today %></font><br>
+Time:<font color="blue"><%= @time = Time.now.to_s(:time) %></font><br>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Room</th>
+      <th>Area</th>
+      <th>Equipment</th>
+      <th>Capacity</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @meeting_rooms.each do |meeting_room| %>
+      <tr>
+        <td><%= meeting_room.room %></td>
+        <td><%= meeting_room.area %></td>
+        <td><%= meeting_room.equipment %></td>
+        <td><%= meeting_room.capacity %></td>
+        <% @reservation = Reservation.where(reservation_date: @date).where("time_start < ?", @time).where("time_end > ?", @time) %>
+        <% if @reservation.exists?(meeting_room_id: meeting_room.id) %>
+          <% @reserve = @reservation.where(meeting_room_id: meeting_room.id) %>
+        <% else %>
+          <% @reserve = Reservation.where(meeting_room_id: meeting_room.id, reservation_date: nil) %>
+        <% end %>
+        <% @reserve.each do |r| %>
+          <td><%= r.status %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+

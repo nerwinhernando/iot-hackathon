@@ -10,7 +10,13 @@ class ApiMeetingRoomsController < ApplicationController
   def find_reservation
     @date = Date.today
     @time = Time.now.to_formatted_s(:time)
-    @reserve = MeetingRoom.where(id: params[:id], reservation_date: @date).where("time_start < ?", @time).where("time_end > ?", @time)
+    @reservations = Reservation.where(meeting_room_id: params[:id]).where("time_start < ?", @time).where("time_end > ?", @time)
+    if @reservations.exists?(reservation_date: @date)
+      @reserve = @reservations.where(reservation_date: @date)
+    else
+      @reserve = Reservation.where(meeting_room_id: params[:id], reservation_date: nil)
+      @reserve.update(time_start: @time, time_end: @time)
+    end
     render nothing: true, status: :not_found unless @reserve.present?
   end
 end
