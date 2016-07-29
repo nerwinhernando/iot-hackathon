@@ -5,10 +5,8 @@ Rails.application.routes.draw do
     scope '/v1' do
 
       scope '/meeting_rooms' do
-        scope '/:id' do
-          get '/' => 'api_meeting_rooms#show'
-          # put '/' => 'api_meeting_rooms#update'
-        end
+        get '/' => 'api_meeting_rooms#show'
+        put '/' => 'api_meeting_rooms#update'
       end
 
       scope '/reservations' do

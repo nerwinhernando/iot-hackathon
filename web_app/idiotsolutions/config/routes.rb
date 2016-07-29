@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'fire_system/index'
+
+  get 'location/index'
+
   get 'home_page/index'
 
   resources :reservations
