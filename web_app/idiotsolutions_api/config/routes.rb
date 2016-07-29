@@ -14,6 +14,17 @@ Rails.application.routes.draw do
         put '/' => 'api_reservations#update'
       end
 
+      scope '/fire_system' do
+        get '/' => 'api_fire_system#show'
+        post '/' => 'api_fire_system#create'
+      end
+
+      scope '/location' do
+        get '/' => 'api_location#show'
+        post '/' => 'api_location#create'
+        put '/' => 'api_location#update'
+      end
+
     end
   end
 end
