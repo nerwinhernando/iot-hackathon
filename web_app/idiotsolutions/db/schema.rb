@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160728043519) do
+ActiveRecord::Schema.define(version: 20160729050532) do
 
   create_table "employees", force: :cascade do |t|
     t.string   "first_name", limit: 255
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 20160728043519) do
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
     t.integer  "floor",      limit: 4
+    t.integer  "status",     limit: 4
   end
 
   create_table "reservations", force: :cascade do |t|
@@ -43,7 +44,6 @@ ActiveRecord::Schema.define(version: 20160728043519) do
     t.integer  "meeting_room_id",    limit: 4
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
-    t.integer  "status",             limit: 4
   end
 
   add_index "reservations", ["employee_id"], name: "index_reservations_on_employee_id", using: :btree

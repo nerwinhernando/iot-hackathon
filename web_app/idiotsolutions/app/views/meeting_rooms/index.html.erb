@@ -1,6 +1,8 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Listing Meeting Rooms</h1>
+Date:<font color="blue"><%= @date = Date.today %></font><br>
+Time:<font color="blue"><%= @time = Time.now.to_s(:time) %></font><br>
 
 <table class="table table-bordered">
   <thead>
@@ -9,7 +11,8 @@
       <th>Area</th>
       <th>Equipment</th>
       <th>Capacity</th>
-      <th>Employee</th>
+      <th>Reserved</th>
+      <th>Status</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -21,7 +24,9 @@
         <td><%= meeting_room.area %></td>
         <td><%= meeting_room.equipment %></td>
         <td><%= meeting_room.capacity %></td>
-        <td><%= meeting_room.employee %></td>
+        <% @reserved = Reservation.where("time_start < ?",@time).where("time_end > ?",@time).where(reservation_date: @date) %>
+        <td><%= @reserved.exists?(meeting_room_id: meeting_room.id) %></td>
+        <td><%= meeting_room.status %></td>
         <td><%= link_to 'Show', meeting_room %></td>
         <td><%= link_to 'Edit', edit_meeting_room_path(meeting_room) %></td>
         <td><%= link_to 'Destroy', meeting_room, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -32,4 +37,4 @@
 
 <br>
 
-<%= link_to 'New Meeting room', new_meeting_room_path %>
+<%#= link_to 'New Meeting room', new_meeting_room_path %>

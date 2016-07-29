@@ -8,7 +8,6 @@
       <th>Reservation date</th>
       <th>Time start</th>
       <th>Time end</th>
-      <th>Status</th>      
       <th>Purpose</th>
       <th>No of participants</th>
       <th>Employee</th>
@@ -23,7 +22,6 @@
         <td><%= reservation.reservation_date %></td>
         <td><%= reservation.time_start.strftime("%I:%M%p")  %></td>
         <td><%= reservation.time_end.strftime("%I:%M%p") %></td>
-        <td><%= reservation.status %></td>
         <td><%= reservation.purpose %></td>
         <td><%= reservation.no_of_participants %></td>
         <td><%= reservation.employee.first_name + " " + reservation.employee.last_name %></td>
