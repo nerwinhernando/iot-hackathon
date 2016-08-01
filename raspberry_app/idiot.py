@@ -6,7 +6,7 @@ import signal
 
 import hello1
 import hello2
-# import pir
+import pir
 
 try:
     import configparser
@@ -62,11 +62,11 @@ if __name__ == '__main__':
             print (attrib,'=',value)
 
         if args.run:
-            # run.append(pir.function)
+            run.append(pir.function)
             exit()
         else:
-            # if args.pir:
-            #     run.append(pir.function)
+            if args.pir:
+                run.append(pir.function)
 
             if args.hello:
                 run.append(hello1.function)
