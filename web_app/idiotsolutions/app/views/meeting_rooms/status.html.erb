@@ -29,7 +29,11 @@ Time:<font color="blue"><%= @time = Time.now.to_s(:time) %></font><br>
           <% @reserve = Reservation.where(meeting_room_id: meeting_room.id, reservation_date: nil) %>
         <% end %>
         <% @reserve.each do |r| %>
-          <td><%= r.status %></td>
+          <% if (r.time_start - 15.minutes).to_s(:time) == @time %>
+            <td>occupied</td>
+          <% else %>
+            <td><%= r.status %></td>
+          <% end %>
         <% end %>
       </tr>
     <% end %>
