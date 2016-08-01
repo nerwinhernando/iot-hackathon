@@ -1,0 +1,2 @@
+class ApiLocationController < ApplicationController
+end

@@ -1,0 +1,2 @@
+class ApiFireSystemController < ApplicationController
+end

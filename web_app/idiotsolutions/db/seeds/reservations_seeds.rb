@@ -20,7 +20,10 @@ Reservation.delete_all
 # Reservations for Meeting Room 1
 sd = Date.parse('2016-08-01')
 ed = Date.parse('2010-08-31')
-
+@meeting_rooms = MeetingRoom.all
+@meeting_rooms.each do |mr|
+	Reservation.create!(meeting_room_id: mr.id, time_start: Time.now.to_s(:time), time_end: Time.now.to_s(:time), purpose: 'Not Reserved', employee_id: 1, status: 1)
+end
 Reservation.create!(reservation_date: '2016-08-06', meeting_room_id: 1,
 	time_start: '08:00:00', time_end: '08:59:59', purpose: 'Retrospective',
 	no_of_participants: 5, employee_id: 1)

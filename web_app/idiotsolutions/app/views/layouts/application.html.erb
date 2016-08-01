@@ -7,11 +7,16 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+<% if controller.controller_name == 'home_page' %>
+	<%= yield %>
+<% else %>
 
 <div class="container">
 	<%= render 'layouts/header' %>
 	<%= yield %>
 </div>
+
+<% end %>
 
 </body>
 </html>

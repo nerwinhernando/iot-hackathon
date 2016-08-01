@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Meeting Rooms</h1>
+<h1>Meeting Rooms</h1>
 
 <table class="table table-bordered">
   <thead>
@@ -9,7 +9,6 @@
       <th>Area</th>
       <th>Equipment</th>
       <th>Capacity</th>
-      <th>Employee</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -21,7 +20,6 @@
         <td><%= meeting_room.area %></td>
         <td><%= meeting_room.equipment %></td>
         <td><%= meeting_room.capacity %></td>
-        <td><%= meeting_room.employee %></td>
         <td><%= link_to 'Show', meeting_room %></td>
         <td><%= link_to 'Edit', edit_meeting_room_path(meeting_room) %></td>
         <td><%= link_to 'Destroy', meeting_room, method: :delete, data: { confirm: 'Are you sure?' } %></td>
