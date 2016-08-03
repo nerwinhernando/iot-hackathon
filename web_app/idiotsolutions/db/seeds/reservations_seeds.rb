@@ -15,6 +15,7 @@ Reservation.delete_all
 #| meeting_room_id    | int(11)      | YES  | MUL | NULL    |                |
 #| created_at         | datetime     | NO   |     | NULL    |                |
 #| updated_at         | datetime     | NO   |     | NULL    |                |
+#| status             | int(11)      | YES  |     | 0       |                |
 #+--------------------+--------------+------+-----+---------+----------------+
 
 # Reservations for Meeting Room 1
