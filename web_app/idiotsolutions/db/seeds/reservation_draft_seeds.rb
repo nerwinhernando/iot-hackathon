@@ -19,8 +19,8 @@ Reservation.delete_all
 #+--------------------+--------------+------+-----+---------+----------------+
 
 # Reservations January 2016 until December 2016
-sd = Date.parse('2016-03-01')
-ed = Date.parse('2016-10-15')
+sd = Date.parse('2016-08-01')
+ed = Date.parse('2016-09-15')
 
 
 #purposes = ["Sprint Retrospective", "Managers Meeting", "Sprint Planning"]
