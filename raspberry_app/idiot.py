@@ -1,7 +1,6 @@
 #declare imports
 import multiprocessing
 import argparse
-import time
 import signal
 
 import hello1
@@ -12,24 +11,6 @@ try:
     import configparser
 except ImportError:
     from ConfigParser import ConfigParser
-
-procs = []
-run = []
-
-class Settings(object):
-    server =""
-
-def loadIniFile(default):
-
-    #import settings from ini file
-    config = configparser.ConfigParser()
-    config.read('idiot.ini')
-
-    #load default server IP
-    server_IP = config['DEFAULT']['default_server_ip']
-    server_port = config['DEFAULT']['default_server_port']
-
-    default.server = 'http://'+ server_IP +':' + server_port
 
 def signal_handler(signal, frame):
     print('You pressed Ctrl+C!, Gracefully stopping software')
@@ -45,6 +26,9 @@ def kill_process():
             p.terminate()
 
 if __name__ == '__main__':
+    procs = []
+    run = []
+
     try:
         parser = argparse.ArgumentParser(description='Run IDIoT software by Team Analog | Bobi | Cris | Cuds | Ed | Ner | ')
         parser.add_argument('--hello', required=False, default=False, help=': Test module', action='store_true')
@@ -54,16 +38,9 @@ if __name__ == '__main__':
 
         args = parser.parse_args()
 
-        default = Settings()
-        loadIniFile(default)
-        print("Successfully initialized default values from ini file")
-        for attrib in [attrib for attrib in dir(default) if not attrib.startswith('__')]:
-            value = getattr(default,attrib)
-            print (attrib,'=',value)
-
         if args.run:
             run.append(pir.function)
-            exit()
+
         else:
             if args.pir:
                 run.append(pir.function)
@@ -79,6 +56,6 @@ if __name__ == '__main__':
         signal.signal(signal.SIGINT, signal_handler)
         signal.pause()
 
-    except:
-        print ("Exception occured! Killing all processes")
+    except Exception as error:
+        print ("Exception occured! Killing all processes", error)
         kill_process()
