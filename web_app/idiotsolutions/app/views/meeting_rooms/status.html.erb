@@ -20,7 +20,7 @@ Time:<font color="blue"><%= @time = Time.now.to_s(:time) %></font><br>
       <tr>
         <td><%= meeting_room.room %></td>
         <td><%= meeting_room.area %></td>
-        <td><%= meeting_room.equipment %></td>
+        <td><%= meeting_room.equipment.resources %></td>
         <td><%= meeting_room.capacity %></td>
         <% @reservation = Reservation.where(reservation_date: @date).where("time_start < ?", @time).where("time_end > ?", @time) %>
         <% if @reservation.exists?(meeting_room_id: meeting_room.id) %>
