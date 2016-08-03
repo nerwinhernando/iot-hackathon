@@ -72,23 +72,26 @@ def function():
 
 	FLAG = None
 
-	while True:
-		pir = GPIO.input(11)
+	try:
+		while True:
+			pir = GPIO.input(11)
 
-		if pir == EMPTY:
-			print ("Meeting Room is empty")
-			GPIO.output(settings.led1_output_pin,LOW)
-			GPIO.output(settings.led2_output_pin, LOW)
-			if FLAG is not EMPTY:
-				sendPost(settings.server, settings.empty, settings.postEnabled)
-				FLAG = EMPTY
-			time.sleep(0.5)
+			if pir == EMPTY:
+				print ("Meeting Room is empty")
+				GPIO.output(settings.led1_output_pin,LOW)
+				GPIO.output(settings.led2_output_pin, LOW)
+				if FLAG is not EMPTY:
+					sendPost(settings.server, settings.empty, settings.postEnabled)
+					FLAG = EMPTY
+				time.sleep(5)
 
-		elif pir == OCCUPIED:
-			print ("Meeting Room is occupied")
-			GPIO.output(settings.led1_output_pin,HIGH)
-			GPIO.output(settings.led2_output_pin,HIGH)
-			if FLAG is not OCCUPIED:
-				sendPost(settings.server, settings.empty,settings.postEnabled)
-				FLAG = OCCUPIED
-			time.sleep(0.5)
+			elif pir == OCCUPIED:
+				print ("Meeting Room is occupied")
+				GPIO.output(settings.led1_output_pin,HIGH)
+				GPIO.output(settings.led2_output_pin,HIGH)
+				if FLAG is not OCCUPIED:
+					sendPost(settings.server, settings.occupied,settings.postEnabled)
+					FLAG = OCCUPIED
+				time.sleep(5)
+	except:
+		print("\nPIR Module stopped!")
