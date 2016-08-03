@@ -15,4 +15,15 @@
 //= require bootstrap-sprockets
 //= require turbolinks
 //= require interact
+//= require Chart.bundle
+//= require chartkick
 //= require_tree .
+
+$(function(){
+	function displayChartItems(element, index, array) {
+		element.show();
+	}
+	
+	$(".filter input:checkbox").forEach(displayChartItems);
+
+});

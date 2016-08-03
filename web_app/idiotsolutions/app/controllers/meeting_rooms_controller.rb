@@ -3,6 +3,10 @@ class MeetingRoomsController < ApplicationController
 
   # GET /meeting_rooms
   # GET /meeting_rooms.json
+  def analytics
+    
+  end
+  
   def status
     @meeting_rooms = MeetingRoom.all
   end

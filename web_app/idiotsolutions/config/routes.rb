@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get 'home_page/index'
 
   get 'meeting_rooms_status', to: 'meeting_rooms#status', as: 'meeting_rooms_status'
+  get 'meeting_rooms_analytics', to: 'meeting_rooms#analytics', as: 'meeting_rooms_analytics'
 
   resources :reservations
   resources :meeting_rooms

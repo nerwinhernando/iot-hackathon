@@ -1,0 +1,81 @@
+<h1>Meeting Room Reservation Analytics</h1>
+<div class="col-sm-3 filter">
+	<div class="panel-group">
+		<div class="panel panel-default">
+		  <div class="panel-heading">Scope</div>
+		  <div class="panel-body">
+		    Date <br>
+		    <div style="padding-left:1em">
+		    <label>From: <%= date_field_tag :date_from, '', class: 'pull-right' %></label><br>
+		    <label>To: <%= date_field_tag :date_to, '', class: 'pull-right' %></label><br>
+		    </div><br>
+		    Time <br>
+		    <div style="padding-left:1em">
+		    From: <%= time_field_tag :time_from %>
+		    To: <%= time_field_tag :time_to %>
+		    </div>
+		  </div>
+		</div>
+		<div class="panel panel-default">
+		  <div class="panel-heading">Filters</div>
+		  <ul class="panel-body" style="list-style:none">
+		    <li><label><input type="checkbox" value="false_reserve" checked="checked"> Unused</label></li>
+		    <li><label><input type="checkbox" value="pk_reserve" checked="checked"> Peak Hours</label></li>
+		    <li><label><input type="checkbox" value="wi_reserve" checked="checked"> Walk-ins</label></li>
+		    <li><label><input type="checkbox" value="canc_reserve" checked="checked"> Cancelled</label></li>
+		    <li><label><input type="checkbox" value="room_usage" checked="checked"> Room Usage</label></li>
+		  </ul>
+		</div>
+	</div>
+</div>
+<div class="col-sm-9 chart-view">
+	<div class="col-sm-6 chart-card-item">
+		<div class="card">
+		  <div class="panel panel-primary">
+		  	<div class="panel-heading"> Unused</div>
+		    <div class="panel-body"><%= pie_chart Reservation.group(:meeting_room_id).count, library: {backgroundColor: "white"} %></div>
+				<div class="panel-footer">Reserved rooms but unused.</div>
+		  </div>
+		</div>
+	</div>
+
+	<div class="col-sm-6 chart-card-item">
+		<div class="card">
+		  <div class="panel panel-primary">
+		  	<div class="panel-heading"> Peak Hours</div>
+		    <div class="panel-body"><%= pie_chart Reservation.group(:meeting_room_id).count, library: {backgroundColor: "white"} %></div>
+				<div class="panel-footer">Time rooms are most demanded</div>
+		  </div>
+		</div>
+	</div>
+
+	<div class="col-sm-6 chart-card-item">
+		<div class="card">
+		  <div class="panel panel-primary">
+		  	<div class="panel-heading"> Walk-ins</div>
+		    <div class="panel-body"><%= pie_chart Reservation.group(:meeting_room_id).count, library: {backgroundColor: "white"} %></div>
+				<div class="panel-footer">Usage without reservation</div>
+		  </div>
+		</div>
+	</div>
+
+	<div class="col-sm-6 chart-card-item">
+		<div class="card">
+		  <div class="panel panel-primary">
+		  	<div class="panel-heading"> Cancelled</div>
+		    <div class="panel-body"><%= pie_chart Reservation.group(:meeting_room_id).count, library: {backgroundColor: "white"} %></div>
+				<div class="panel-footer">Reservatinos ussually cancelled</div>
+		  </div>
+		</div>
+	</div>
+
+	<div class="col-sm-6 chart-card-item">
+		<div class="card">
+		  <div class="panel panel-primary">
+		  	<div class="panel-heading"> Room Usage</div>
+		    <div class="panel-body"><%= pie_chart Reservation.group(:meeting_room_id).count, library: {backgroundColor: "white"} %></div>
+				<div class="panel-footer">Amount of time input in reservation</div>
+		  </div>
+		</div>
+	</div>
+</div>
