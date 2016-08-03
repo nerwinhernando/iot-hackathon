@@ -6,23 +6,23 @@ Rails.application.routes.draw do
 
       scope '/meeting_rooms' do
         get '/' => 'api_meeting_rooms#show'
-        put '/' => 'api_meeting_rooms#update'
+        match '/' => 'api_meeting_rooms#update', via: [:put, :patch, :post]
       end
 
       scope '/reservations' do
         get '/' => 'api_reservations#show'
-        put '/' => 'api_reservations#update'
+        match '/' => 'api_reservations#update', via: [:put, :patch, :post]
       end
 
       scope '/fire_system' do
         get '/' => 'api_fire_system#show'
-        post '/' => 'api_fire_system#create'
+        match '/' => 'api_fire_system#create', via: [:put, :patch, :post]
       end
 
       scope '/location' do
         get '/' => 'api_location#show'
         post '/' => 'api_location#create'
-        put '/' => 'api_location#update'
+        match '/' => 'api_location#update', via: [:put, :patch, :post]
       end
 
     end
