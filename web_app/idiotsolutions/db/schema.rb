@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160729101045) do
+ActiveRecord::Schema.define(version: 20160803062952) do
 
   create_table "employees", force: :cascade do |t|
     t.string   "first_name", limit: 255
@@ -23,14 +23,21 @@ ActiveRecord::Schema.define(version: 20160729101045) do
     t.datetime "updated_at",             null: false
   end
 
-  create_table "meeting_rooms", force: :cascade do |t|
-    t.string   "room",       limit: 255
-    t.string   "area",       limit: 255
-    t.string   "equipment",  limit: 255
-    t.integer  "capacity",   limit: 4
+  create_table "equipments", force: :cascade do |t|
+    t.string   "resources",  limit: 255
+    t.string   "comments",   limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
-    t.integer  "floor",      limit: 4
+  end
+
+  create_table "meeting_rooms", force: :cascade do |t|
+    t.string   "room",         limit: 255
+    t.string   "area",         limit: 255
+    t.integer  "equipment_id", limit: 4
+    t.integer  "capacity",     limit: 4
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.integer  "floor",        limit: 4
   end
 
   create_table "reservations", force: :cascade do |t|
@@ -41,9 +48,9 @@ ActiveRecord::Schema.define(version: 20160729101045) do
     t.integer  "no_of_participants", limit: 4
     t.integer  "employee_id",        limit: 4
     t.integer  "meeting_room_id",    limit: 4
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
-    t.integer  "status",             limit: 4
+    t.datetime "created_at",                                 null: false
+    t.datetime "updated_at",                                 null: false
+    t.integer  "status",             limit: 4,   default: 0
   end
 
   add_index "reservations", ["employee_id"], name: "index_reservations_on_employee_id", using: :btree
