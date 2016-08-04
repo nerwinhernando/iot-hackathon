@@ -20,10 +20,33 @@
 //= require_tree .
 
 $(function(){
-	function displayChartItems(element, index, array) {
-		element.show();
+
+	//reservation index
+	function formatDate(date) {
+	    var d = new Date(date),
+	        month = '' + (d.getMonth() + 1),
+	        day = '' + d.getDate(),
+	        year = d.getFullYear();
+
+	    if (month.length < 2) month = '0' + month;
+	    if (day.length < 2) day = '0' + day;
+
+	    return [year, month, day].join('-');
 	}
+
+	$(".res-pagination .page-link").click (function() {
+		var btn = $(this).attr("aria-label");
+		var date = new Date($("form #date").val());
+		if(btn == "Next") {
+			date.setDate(date.getDate() + 1);
+		} else if (btn == "Previous") {
+			date.setDate(date.getDate() - 1);
+		}
+		$("form #date").val(formatDate(date));
+		$(this).siblings("form").submit();
+	});
+
+	//meeting room status
 	
-	$(".filter input:checkbox").forEach(displayChartItems);
 
 });

@@ -4,7 +4,8 @@ class ReservationsController < ApplicationController
   # GET /reservations
   # GET /reservations.json
   def index
-    @reservations = Reservation.all.order(created_at: :asc)
+    @date = params[:date] || Date.today
+    @reservations = Reservation.where(reservation_date: @date).order(created_at: :asc)
   end
 
   # GET /reservations/1

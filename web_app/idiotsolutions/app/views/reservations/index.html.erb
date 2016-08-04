@@ -2,6 +2,20 @@
 
 <h1>Listing Reservations</h1>
 
+<div class="res-pagination">
+  <button class="page-link" href="#" aria-label="Previous">
+    <span aria-hidden="true">&laquo;</span>
+    <span class="sr-only">Previous</span>
+  </button>
+  <%= form_tag reservations_index_path, style: "margin-left:1em; margin-right:1em; display:inline-block" do %>
+    <%= date_field_tag :date, @date, onchange: "this.form.submit();" %>
+  <% end %>
+  <button class="page-link" href="#" aria-label="Next">
+    <span aria-hidden="true">&raquo;</span>
+    <span class="sr-only">Next</span>
+  </button>
+</div>
+
 <table class="table table-bordered">
   <thead>
     <tr>
