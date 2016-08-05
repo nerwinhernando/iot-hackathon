@@ -56,7 +56,7 @@ def sendPost(server,status,postEnabled):
 		request = urllib2.Request(server, status)
 		request.add_header('Content-Type','application/json')
 		request.get_method = lambda:'PUT'
-		#url = opener.open (request)
+		url = opener.open (request)
 		print("PUT",server,status,"sent")
 
 def function():
@@ -71,27 +71,36 @@ def function():
 	settings.set_GPIO()
 
 	FLAG = None
+	FLAG2 = None
 
 	try:
 		while True:
-			pir = GPIO.input(11)
-
+			pir = GPIO.input(settings.pir_pin)
 			if pir == EMPTY:
-				print ("Meeting Room is empty")
-				GPIO.output(settings.led1_output_pin,LOW)
-				GPIO.output(settings.led2_output_pin, LOW)
+				print("Meeting Room is empty")
+				time.sleep(5)
 				if FLAG is not EMPTY:
-					sendPost(settings.server, settings.empty, settings.postEnabled)
 					FLAG = EMPTY
+					if FLAG2 is not EMPTY:
+						print("Meeting Room is empty, send UPDATE")
+						GPIO.output(settings.led1_output_pin, LOW)
+						GPIO.output(settings.led2_output_pin, LOW)
+						sendPost(settings.server, settings.empty, settings.postEnabled)
+						FLAG2 = EMPTY
 				time.sleep(5)
 
 			elif pir == OCCUPIED:
-				print ("Meeting Room is occupied")
-				GPIO.output(settings.led1_output_pin,HIGH)
-				GPIO.output(settings.led2_output_pin,HIGH)
-				if FLAG is not OCCUPIED:
-					sendPost(settings.server, settings.occupied,settings.postEnabled)
-					FLAG = OCCUPIED
+				print("Meeting Room is occupied")
 				time.sleep(5)
-	except:
-		print("\nPIR Module stopped!")
+				if FLAG is not OCCUPIED:
+					FLAG = OCCUPIED
+					if FLAG2 is not OCCUPIED:
+						print("Meeting Room is occupied, send UPDATE")
+						GPIO.output(settings.led1_output_pin, HIGH)
+						GPIO.output(settings.led2_output_pin, HIGH)
+						sendPost(settings.server, settings.occupied, settings.postEnabled)
+						FLAG2 = OCCUPIED
+				time.sleep(5)
+
+	except Exception as error:
+		print("\nPIR Module stopped!", error)

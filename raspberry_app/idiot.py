@@ -6,6 +6,7 @@ import signal
 import hello1
 import hello2
 import pir
+import temp
 
 try:
     import configparser
@@ -34,6 +35,7 @@ if __name__ == '__main__':
         parser.add_argument('--hello', required=False, default=False, help=': Test module', action='store_true')
         parser.add_argument('--run', required=False, default=False, help=': Run all modules', action='store_true')
         parser.add_argument('--pir', required=False, default=False, help=': Run PIR module', action='store_true')
+        parser.add_argument('--temp', required=False, default=False, help=': Run Temp modules', action='store_true')
         parser.add_argument('--kill', required=False, default=False, help=': Kill all modules', action='store_true')
 
         args = parser.parse_args()
@@ -48,6 +50,9 @@ if __name__ == '__main__':
             if args.hello:
                 run.append(hello1.function)
                 run.append(hello2.function)
+
+            if args.temp:
+                run.append(temp.function)
 
         for func in run:
             procs.append(multiprocessing.Process(target=func)) #args=(arg1, arg2)
