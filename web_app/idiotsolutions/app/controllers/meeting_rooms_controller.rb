@@ -4,7 +4,13 @@ class MeetingRoomsController < ApplicationController
   # GET /meeting_rooms
   # GET /meeting_rooms.json
   def analytics
-    
+    @date = Hash.new
+    @time = Hash.new
+    @date['from'] = params[:date_from] || Date.today - 3.day
+    @date['to'] = params[:date_to] || Date.today + 3.day
+    @time['from'] = params[:time_from] || Time.now.to_s(:time)
+    @time['to'] = params[:time_to] || Time.now.to_s(:time)
+
   end
   
   def status

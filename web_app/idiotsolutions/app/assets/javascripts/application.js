@@ -49,4 +49,10 @@ $(function(){
 	//meeting room status
 	
 
+	//analytics
+	// $(".summary button").click(function() {
+	// 	$(this).siblings(".details").slideToggle();
+	// 	$(this).find("span").toggleClass("glyphicon-triangle-top glyphicon-triangle-bottom")
+	// });
+
 });

@@ -55,7 +55,7 @@ sd.upto(ed) { |date|
       print "Room: ".concat(mr.room).concat("\n")
       capacity = mr.capacity
       participants = Random.new.rand(1..capacity)
-      fill_status = Random.new.rand(0..1)
+      fill_status = Random.new.rand(0..2)
       fill_employee_id = Random.new.rand(1..47)
       index = Random.new.rand(0..purposes.length)
       purpose = purposes[index]

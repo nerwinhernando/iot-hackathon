@@ -1,81 +1,75 @@
+<script type="text/javascript">
+	<% date_range = (@date['from']..@date['to']).map{|d| d.strftime("%F")} %>
+	$(function(){
+		new Highcharts.Chart({
+			chart: {
+				renderTo: "main_chart"
+			},
+			title: {
+            text: 'Meeting Room Reservations Analytics'
+	        },
+	        xAxis: {
+	            categories: <%= raw date_range %><%#= raw MeetingRoom.order(:id).pluck(:room) %><%#= MeetingRoom.where(id: 1..5).pluck(:room).inspect %>
+	        },
+	        series: [
+		        {
+		            type: 'column',
+		            name: "Total Reservations",
+		            data: <%= date_range.map {|date| Reservation.where(reservation_date: date).count} %>
+		        },
+		        {
+		            type: 'column',
+		            name: "Total Reservations",
+		            data: <%= date_range.map {|date| Reservation.where(reservation_date: date).count} %>
+		        }
+		    ]
+		});
+	});
+</script>
+
 <h1>Meeting Room Reservation Analytics</h1>
-<div class="col-sm-3 filter">
-	<div class="panel-group">
-		<div class="panel panel-default">
-		  <div class="panel-heading">Scope</div>
-		  <div class="panel-body">
-		    Date <br>
-		    <div style="padding-left:1em">
-		    <label>From: <%= date_field_tag :date_from, '', class: 'pull-right' %></label><br>
-		    <label>To: <%= date_field_tag :date_to, '', class: 'pull-right' %></label><br>
-		    </div><br>
-		    Time <br>
-		    <div style="padding-left:1em">
-		    From: <%= time_field_tag :time_from %>
-		    To: <%= time_field_tag :time_to %>
-		    </div>
-		  </div>
-		</div>
-		<div class="panel panel-default">
-		  <div class="panel-heading">Filters</div>
-		  <ul class="panel-body" style="list-style:none">
-		    <li><label><input type="checkbox" value="false_reserve" checked="checked"> Unused</label></li>
-		    <li><label><input type="checkbox" value="pk_reserve" checked="checked"> Peak Hours</label></li>
-		    <li><label><input type="checkbox" value="wi_reserve" checked="checked"> Walk-ins</label></li>
-		    <li><label><input type="checkbox" value="canc_reserve" checked="checked"> Cancelled</label></li>
-		    <li><label><input type="checkbox" value="room_usage" checked="checked"> Room Usage</label></li>
-		  </ul>
-		</div>
+<%#= @date['from'].year %>
+<%#= Date.strptime(@date['from'], '%Y-%m-%d')..Date.strptime(@date['to'], '%Y-%m-%d') %>
+<%# ((Date.new(@date['from'].year,@date['from'].month,@date['from'].day))..(Date.new(@date['to'].year,@date['to'].month,@date['to'].day))).each do |d| %>
+<%#= (@date['from']..@date['to']).map{|date| date.strftime("%b %d")} %>
+<%#= (@date['from']..@date['to']).map{|d| d.strftime("%F")} %>
+<%#= d %>
+<%# end -%>
+<%= render partial: "analytics_filterB", locals: {date_from: @date['from'], date_to: @date['to'], time_from: @time['from'], time_to: @time['to']} %>
+
+<div class="row summary">
+	<button><span class="glyphicon glyphicon-triangle-top"></span> Summary </button>
+	<div class="details">
+		<ul style="list-style:none">
+		    <li>Total Number of False/Unused Reservations:  45</li>
+		    <li>B:</li>
+		    <li>C:</li>
+		    <li>D:</li>
+		    <li>E:</li>
+		</ul>
 	</div>
 </div>
-<div class="col-sm-9 chart-view">
-	<div class="col-sm-6 chart-card-item">
-		<div class="card">
-		  <div class="panel panel-primary">
-		  	<div class="panel-heading"> Unused</div>
-		    <div class="panel-body"><%= pie_chart Reservation.group(:meeting_room_id).count, library: {backgroundColor: "white"} %></div>
-				<div class="panel-footer">Reserved rooms but unused.</div>
-		  </div>
-		</div>
-	</div>
 
-	<div class="col-sm-6 chart-card-item">
-		<div class="card">
-		  <div class="panel panel-primary">
-		  	<div class="panel-heading"> Peak Hours</div>
-		    <div class="panel-body"><%= pie_chart Reservation.group(:meeting_room_id).count, library: {backgroundColor: "white"} %></div>
-				<div class="panel-footer">Time rooms are most demanded</div>
-		  </div>
-		</div>
-	</div>
+<div class="row chart-view">
 
-	<div class="col-sm-6 chart-card-item">
-		<div class="card">
-		  <div class="panel panel-primary">
-		  	<div class="panel-heading"> Walk-ins</div>
-		    <div class="panel-body"><%= pie_chart Reservation.group(:meeting_room_id).count, library: {backgroundColor: "white"} %></div>
-				<div class="panel-footer">Usage without reservation</div>
-		  </div>
-		</div>
-	</div>
-
-	<div class="col-sm-6 chart-card-item">
-		<div class="card">
-		  <div class="panel panel-primary">
-		  	<div class="panel-heading"> Cancelled</div>
-		    <div class="panel-body"><%= pie_chart Reservation.group(:meeting_room_id).count, library: {backgroundColor: "white"} %></div>
-				<div class="panel-footer">Reservatinos ussually cancelled</div>
-		  </div>
-		</div>
-	</div>
-
-	<div class="col-sm-6 chart-card-item">
+	<div class="chart-card-item">
 		<div class="card">
 		  <div class="panel panel-primary">
 		  	<div class="panel-heading"> Room Usage</div>
-		    <div class="panel-body"><%= pie_chart Reservation.group(:meeting_room_id).count, library: {backgroundColor: "white"} %></div>
-				<div class="panel-footer">Amount of time input in reservation</div>
+		    <div class="panel-body" id="main_chart"></div>
+			<div class="panel-footer">Amount of time input in reservation</div>
 		  </div>
 		</div>
 	</div>
+
+	<!-- <div class="chart-card-item">
+		<div class="card">
+		  <div class="panel panel-primary">
+		  	<div class="panel-heading"> Room Usage</div>
+		    <div class="panel-body" id="total_reservations"></div>
+			<div class="panel-footer">Amount of time input in reservation</div>
+		  </div>
+		</div>
+	</div> -->
+
 </div>

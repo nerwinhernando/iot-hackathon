@@ -1,0 +1,25 @@
+#########################
+Summary: (top and least)
+
+Given Date and Time
+
+	+ Total Number of False/Unused Reservations
+	+ Total Number of Reservations
+	+ Favorite Meeting Room
+	+ Most hated Meeting Room </3
+	+ Top Reserver
+	+ Bargains without Reservation
+	+ Most reserving time
+
+
+#########################
+x: date
+y: False/Unused Reservations
+
+type: line
+
+
+#########################
+Note:
+
+Breakdown
