@@ -6,4 +6,10 @@ class Reservation < ActiveRecord::Base
   def self.total_on(id)
   	where(meeting_room_id: id).count
   end
+
+  def durations_and_count(reservations)
+  	reservations.each do |r|
+  		# r.time -
+  	end
+  end
 end

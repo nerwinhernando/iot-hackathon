@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   get 'home_page/index'
 
   get 'meeting_rooms_status', to: 'meeting_rooms#status', as: 'meeting_rooms_status'
-  get 'meeting_rooms_analytics', to: 'meeting_rooms#analytics', as: 'meeting_rooms_analytics'
+  match 'meeting_rooms_analytics', to: 'meeting_rooms#analytics', as: 'meeting_rooms_analytics', via: [:get, :post]
 
   post 'reservations', to: 'reservations#index', as: 'reservations_index'
 

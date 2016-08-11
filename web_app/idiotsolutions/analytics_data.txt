@@ -3,13 +3,13 @@ Summary: (top and least)
 
 Given Date and Time
 
-	+ Total Number of False/Unused Reservations
-	+ Total Number of Reservations
-	+ Favorite Meeting Room
+	+ Total Number of False/Unused Reservations +
+	+ Total Number of Reservations +
+	+ Favorite Meeting Room (pie)
 	+ Most hated Meeting Room </3
-	+ Top Reserver
+	+ Top Reserver (pie)
 	+ Bargains without Reservation
-	+ Most reserving time
+	+ Most reserving time (pie)
 
 
 #########################

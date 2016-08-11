@@ -11,7 +11,9 @@ class ApiMeetingRoomsController < ApplicationController
     render json: @meeting_rooms
   end
   def update
+    logger.debug params
     find_reservation(params[:id])
+    # render nothing: true, status: :not_found unless @reserve.present?
     @reserve.update(status: params[:status])
     render json: @reserve
   end
@@ -29,8 +31,7 @@ class ApiMeetingRoomsController < ApplicationController
       @reserve = @reservations.where(reservation_date: @date)
     else
       @reserve = Reservation.where(meeting_room_id: id, reservation_date: nil)
-      @reserve.update(time_start: @time, time_end: @time)
+      # @reserve.update(time_start: "00:00:00", time_end: "00:00:00")
     end
-    render nothing: true, status: :not_found unless @reserve.present?
   end
 end
